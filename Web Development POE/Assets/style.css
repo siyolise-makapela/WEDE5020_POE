@@ -1,0 +1,220 @@
+/* The Daily Grind Café - shared stylesheet */
+:root {
+    --green: #2f5d3a;
+    --green-dark: #234529;
+    --cream: #f7f1e3;
+    --cream-dark: #ebe2cc;
+    --espresso: #3b2418;
+    --white: #fffdf8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--espresso);
+    background: var(--cream);
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; color: var(--green-dark); line-height: 1.25; }
+hr { display: none; }
+a { color: var(--green); }
+
+/* ---------- Header / nav ---------- */
+header {
+    background: var(--green);
+    color: var(--cream);
+    padding: 14px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+header strong, header > p { margin: 0; font-family: Georgia, serif; font-size: 1.4rem; font-weight: bold; }
+nav a {
+    color: var(--cream);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 0 2px;
+    transition: background .2s;
+}
+nav a:hover { background: rgba(255,255,255,.18); }
+nav a.active { background: var(--cream); color: var(--green-dark); }
+
+/* ---------- Layout ---------- */
+main { max-width: 1000px; margin: 0 auto; padding: 30px 5% 40px; }
+section { margin-bottom: 28px; }
+body > section {            /* home page hero */
+    background: linear-gradient(rgba(35,69,41,.85), rgba(59,36,24,.85));
+    color: var(--cream);
+    text-align: center;
+    padding: 70px 5%;
+}
+body > section h1 { color: var(--cream); font-size: 2.4rem; margin: 0 0 10px; }
+body > section a {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--green-dark);
+    padding: 10px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+body > section a:hover { background: #fff; }
+
+/* ---------- Cards (home + menu) ---------- */
+main > div, section > div {
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
+    max-width: 100%;
+    margin: 0 14px 20px 0;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 2px 8px rgba(59,36,24,.15);
+}
+main > div h3, section > div h3 { margin: 4px 0 8px; }
+main > div img, section > div img {
+    width: 100%; height: 190px; object-fit: cover; border-radius: 8px; display: block;
+}
+
+/* ---------- Buttons ---------- */
+button {
+    font: inherit;
+    background: var(--green);
+    color: var(--cream);
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s;
+}
+button:hover:not(:disabled) { background: var(--green-dark); }
+button:disabled { background: #8a8a6a; cursor: default; }
+
+/* ---------- Forms ---------- */
+form {
+    background: var(--white);
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(59,36,24,.15);
+    max-width: 560px;
+}
+label { font-weight: 600; }
+input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    font: inherit;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #c9bd9f;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--espresso);
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--green); border-color: var(--green); }
+.field-error { font-size: .9rem; margin-top: 3px; }
+form [role="status"] { font-weight: 600; color: var(--green-dark); }
+iframe { max-width: 100%; border-radius: 12px; }
+
+/* ---------- Order panel (menu page) ---------- */
+#order-panel {
+    background: var(--white);
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-top: 30px;
+    max-width: 560px;
+}
+#order-panel h2 { margin-top: 0; }
+#order-list { list-style: none; padding: 0; }
+#order-list li { padding: 8px 0; border-bottom: 1px dashed var(--cream-dark); }
+#order-list li button { padding: 2px 10px; margin-left: 4px; }
+#order-total { font-size: 1.15rem; color: var(--green-dark); }
+#order-message { color: var(--green-dark); font-weight: 600; }
+
+/* ---------- Footer ---------- */
+footer {
+    background: var(--espresso);
+    color: var(--cream);
+    padding: 30px 5% 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+footer div { flex: 1 1 220px; }
+footer h3 { color: #d8c79b; margin-top: 0; }
+footer p { margin: 4px 0; }
+footer > p { flex-basis: 100%; text-align: center; border-top: 1px solid rgba(255,255,255,.2); padding-top: 14px; font-size: .9rem; }
+
+@media (max-width: 600px) {
+    header { flex-direction: column; text-align: center; }
+    main > div, section > div { width: 100%; margin-right: 0; }
+}
+
+/* ---------- Click-to-enlarge pictures (lightbox) ---------- */
+img.zoomable {
+    cursor: zoom-in;
+    transition: transform .2s, box-shadow .2s;
+}
+img.zoomable:hover,
+img.zoomable:focus-visible {
+    transform: scale(1.04);
+    box-shadow: 0 6px 16px rgba(59,36,24,.35);
+}
+#lightbox {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(59,36,24,.85);
+    animation: lightbox-fade .25s ease;
+}
+#lightbox[hidden] { display: none; }
+#lightbox figure { margin: 0; max-width: 90vw; text-align: center; animation: lightbox-pop .3s ease; }
+#lightbox-img {
+    max-width: 90vw; max-height: 80vh; width: auto; height: auto;
+    border-radius: 10px; border: 6px solid var(--white);
+    box-shadow: 0 10px 40px rgba(0,0,0,.5);
+}
+#lightbox-caption { margin-top: 12px; color: var(--cream); font-size: 1.1rem; }
+#lightbox-close {
+    position: absolute; top: 16px; right: 22px;
+    padding: 4px 14px; font-size: 2rem; line-height: 1.2;
+    background: var(--cream); color: var(--espresso);
+}
+#lightbox-close:hover { background: var(--cream-dark); }
+@keyframes lightbox-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lightbox-pop  { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+/* ---------- Search bar ---------- */
+[hidden] { display: none !important; }
+
+#search-box {
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(59,36,24,.15);
+}
+#search-box label { font-weight: bold; margin-right: 8px; }
+#search-input {
+    font: inherit;
+    width: min(100%, 360px);
+    padding: 8px 12px;
+    border: 2px solid var(--green);
+    border-radius: 6px;
+    background: var(--white);
+    color: var(--espresso);
+}
+#search-input:focus { outline: 3px solid var(--cream-dark); border-color: var(--green-dark); }
+#search-status { margin: 8px 0 0; min-height: 1.4em; font-style: italic; }
+main > #search-box { width: 100%; max-width: none; margin-right: 0; display: block; }
